@@ -185,11 +185,7 @@ async def endGoogleCloudStream(sid, args):
     session = get_session(sid)
     if 'recognizeStream' in session:
         session['recognizeStream'].terminated = True
-        
         del session['recognizeStream']
-
-    
-    
 
 @sio.on('binaryData')
 async def binaryData(sid, args):
@@ -216,6 +212,12 @@ async def connect(sid, environ):
 async def disconnect(sid):
     print('Client disconnected ' + sid, file=sys.stderr)
 
+    
+
+app.router.add_static('/', path='./static/', name='static')
+    
+    
+    
 ssl_context = None
 
 if __name__ == '__main__':
